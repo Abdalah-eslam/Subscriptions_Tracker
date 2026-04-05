@@ -1,7 +1,9 @@
 import { Router } from "express";
 import {  createSubscription, updateSubscription, deleteSubscription, getUserSubscription, cancelSubscription, getUpcomingRenewals ,getSubscriptionbyID} from "../controllers/subscription.controller.js";
 import { authorize } from "../middlewares/authMidlleware.js";
+import arcjetMidlleware from "../middlewares/arcjet.midlleware.js";
 const subscriptionRouter = Router();
+subscriptionRouter.use(arcjetMidlleware)
 subscriptionRouter.use(authorize);
 subscriptionRouter.get("/", (req, res) => {
     res.json({ message: "Hello From  subscriptions API" });

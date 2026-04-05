@@ -6,9 +6,11 @@ import userRouter from './routes/users.routes.js';
 import authRouter from './routes/auth.routes.js';
 import cookieParser from 'cookie-parser';
 import errormiddleware from './middlewares/ErrorHandler.js';
+import arcjetMiddleware from './middlewares/arcjet.midlleware.js';
 
 const app = express();
 app.use(express.json());
+app.set("trust proxy", true);
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
