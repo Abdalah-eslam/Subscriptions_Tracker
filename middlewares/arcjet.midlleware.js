@@ -6,9 +6,6 @@ import { NODE_ENV } from "../config/env.js";
 const arcjetMiddleware = async (req, res, next) => {
   try {
     const decision = await aj.protect(req, { requested: 1 });
-
-    console.log("decision is>>>" ,decision);
-    
     if (decision.isDenied()) {
       if (decision.reason.type === "RATE_LIMIT") return res.status(429).json({ success: false, message: "Rate limit exceeded" , reason: decision.reason });
       
